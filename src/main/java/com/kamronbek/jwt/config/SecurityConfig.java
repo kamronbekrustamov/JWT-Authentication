@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Disabling HTTP BASIC Authentication
-        http.httpBasic().disable();
+        http.httpBasic();
 
         // Disabling Session Management
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Config for http://localhost:8080/api/v1/users
         http.authorizeRequests()
-                .antMatchers("/api/v1/users/authenticate").authenticated()
+                .antMatchers("/api/v1/users/authenticate").permitAll()
                 .antMatchers("/api/v1/users/register").anonymous();
     }
 
